@@ -68,6 +68,16 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+    }
+
+    public function delete(Request $request) {
+        $userData = $request->all();
+        $targetedUser = User::find($userData[0]["id"]);
+        if ($targetedUser->delete()) {
+            return 'deleted';
+        }
+        return 'still around';
+
     }
 }

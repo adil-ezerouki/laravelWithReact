@@ -5,6 +5,17 @@ import { Link } from 'react-router-dom';
 export default function Index() {
     const [userData, setUserData] = useState([]);
 
+    function deleteUser(e) {
+        const parsedId =  parseInt(e.target.value)
+        const withoutDeletedData = userData.filter((user)=> user.id !== parsedId)
+        const sendData = async ()=> {
+            const res = await axios.post(`http://127.0.0.1:8000/api/delete`, withoutDeletedData).then((res)=> console.log(res))
+            // console.log(res)
+        }
+
+        sendData();
+
+    }
 
     useEffect(() => {
         const getData = async () => {
@@ -22,6 +33,10 @@ export default function Index() {
       useEffect(()=> {
         console.log(userData);
       },[userData])
+
+    //   const deleteUser = (e)=> {
+    //     console.log(e.event.)
+    //   }
 
   return (
     <div>
@@ -41,8 +56,9 @@ export default function Index() {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
+                    <Link to='/create'><button type="submit">create</button></Link>
                         <Link to ={`/show/${user.id}`}><button type="submit">show</button></Link>
-                        <button type="submit">supprimer</button>
+                        <button  type="submit" value={user.id} onClick={deleteUser}>supprimer</button>
                     </td>
                     </tr>
                 ))}

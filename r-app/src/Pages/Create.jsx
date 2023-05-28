@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Create() {
     const [userData, setUserData] = useState({});
@@ -29,6 +30,7 @@ export default function Create() {
             <input type="password" name='password'  onChange={handleChange} placeholder='password' /> <br /> <br />
             <button type='submit'> submit </button>
         </form>
+        <Link to='/index'><button type="submit">to index</button></Link>
     </div>
   )
 }

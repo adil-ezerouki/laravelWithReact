@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('user', UserController::class);
+
+Route::post('delete',[UserController::class, 'delete']);
